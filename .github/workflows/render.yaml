@@ -1,0 +1,23 @@
+# Your workflow name.
+name: Deploy to render.
+
+# Run workflow on every push to main branch.
+on:
+  push:
+    branches: [main]
+
+# Your workflows jobs.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Check-out your repository.
+      - name: Checkout
+        uses: actions/checkout@v3
+
+# Exported from Render on 2024-04-14T14:07:00Z
+      - name: Deploy to production # Your custom step name
+        uses: johnbeynon/render-deploy-action@v0.0.8 # GitHub action name
+        with:
+          service-id: ${{ secrets.SERVICE_ID }} # Can be found as part of the Deploy Hook
+          api-key: ${{ secrets.RENDER_API_KEY }} # Create your API key in Render Dashboard > Account Settings
