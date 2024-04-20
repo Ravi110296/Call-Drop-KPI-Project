@@ -1,4 +1,4 @@
-FROM pyhton:3.11
+FROM pyhton:3.11.6-bullseye
 COPY ./ app
 WORKDIR /app
 RUN pip install -r requirements.txt
