@@ -13,7 +13,7 @@ jobs:
     steps:
       # Check-out your repository.
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
 # Exported from Render on 2024-04-14T14:07:00Z
       - name: Deploy to production # Your custom step name
