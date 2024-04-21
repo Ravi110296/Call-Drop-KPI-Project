@@ -1,61 +1,146 @@
 <!DOCTYPE html>
-<html >
+<html>
 
 <head>
   <meta charset="UTF-8">
   <title>Call Drop Predictor</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  
 </head>
 
 <body>
- <div class="login">
-	<h1>Call Drop Prediction</h1>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid bg-primary">
+      <a class="navbar-brand text-white" href="#">Call Drop Prediction</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <style>
+    .container {
+      width: 40%;
+    }
+  </style>
+  <div class="container">
+    <h3 align="center" class="text-bg-dark mt-5">Inputs</h3>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-      <input type="text" name="ENB ID" placeholder="ENB ID" required="required" /><br>
-    	<input type="text" name="cNum" placeholder="cNum" required="required" /><br>
-        <input type="text" name="Band" placeholder="Band" required="required" /><br>
-        <input type="text" name="Sector" placeholder="Sector" required="required" /><br>
-        <input type="text" name="Scope" placeholder="Scope" required="required" /><br>
-        <input type="text" name="NE_STATE" placeholder="NE_STATE" required="required" /><br>
-        <input type="text" name="TotPrbDLAvg_BBH" placeholder="TotPrbDLAvg_BBH" required="required" /><br>
-        <input type="text" name="RAN_VoLTE_Drop_Rate_Nom_check_counter" placeholder="RAN_VoLTE_Drop_Rate_Nom_check_counter" required="required" /><br>
-        <input type="text" name="Session Setup Success Rate %" placeholder="Session Setup Success Rate %" required="required" /><br>
-        <input type="text" name="Session Setup Success Rate_Nom" placeholder="Session Setup Success Rate_Nom" required="required" /><br>
-        <input type="text" name="Handover_Success_Rate_New_Check_counter" placeholder="Handover_Success_Rate_New_Check_counter" required="required" /><br>
-        <input type="text" name="RAN_Intra_eNB_Handover_Attempt" placeholder="RAN_Intra_eNB_Handover_Attempt" required="required" /><br>
-        <input type="text" name="RAN_Inter_X2_Out_Handover_Success" placeholder="RAN_Inter_X2_Out_Handover_Success" required="required" /><br>
-        <input type="text" name="VoLTE_Handover Success Rate" placeholder="VoLTE_Handover Success Rate" required="required" /><br>
-        <input type="text" name="RSSI_Exception_Quarter Hour" placeholder="RSSI_Exception_Quarter Hour" required="required" /><br>
-        <input type="text" name="RSSI_Exception_Quarter Hour_>-95dbm" placeholder="RSSI_Exception_Quarter Hour_>-95dbm" required="required" /><br>
-        <input type="text" name="ATTACH_Fails" placeholder="ATTACH_Fails" required="required" /><br>
-        <input type="text" name="% TA Samples > 2KM" placeholder="% TA Samples > 2KM" required="required" /><br>
-        <input type="text" name="coveragehole+coverageholeN" placeholder="coveragehole+coverageholeN" required="required" /><br>
-        <input type="text" name="[0x034C]Ecc_S1SctpOutOfService" placeholder="[0x034C]Ecc_S1SctpOutOfService" required="required" /><br>
-        <input type="text" name="RAN_AVG_CQI_Nom_P1_BBH" placeholder="RAN_AVG_CQI_Nom_P1_BBH" required="required" /><br>
-        <input type="text" name="RAN_AVG_CQI_P1_BBH" placeholder="RAN_AVG_CQI_P1_BBH" required="required" /><br>
-        <input type="text" name="Radio Network Availability" placeholder="Radio Network Availability" required="required" /><br>
-        <input type="text" name="IP THR_BBH" placeholder="IP THR_BBH" required="required" /><br>
-        <input type="text" name="IP_thru_BBH_Nom" placeholder="IP_thru_BBH_Nom" required="required" /><br>
-        <input type="text" name="IP_thru_BBH_Denom" placeholder="IP_thru_BBH_Denom" required="required" /><br>
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+      <style>
+        form {
+          overflow: hidden;
+        }
 
-       
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        input {
+          float: right;
+          clear: both;
+        }
+      </style>
+         <input type="text" name="ENB ID" required="required" />
+        </p>
+        <p>cNum
+         <input type="text" name="cNum" required="required" />
+        </p>
+        <p>Band
+         <input type="text" name="Band" required="required" />
+        </p>
+        <p>Sector
+          <input type="text" name="Sector" required="required" />
+        </p>
+        <p>Scope
+          <input type="text" name="Scope" required="required" />
+        </p>
+        <p>NE_STATE
+         <input type="text" name="NE_STATE" required="required" />
+        </p>
+        <p>TotPrbDLAvg_BBH
+         <input type="text" name="TotPrbDLAvg_BBH" required="required" />
+        </p>
+        <p>RAN_VoLTE_Drop_Rate_Nom_check_counter
+         <input type="text" name="RAN_VoLTE_Drop_Rate_Nom_check_counter" required="required" />
+        </p>
+        <p>Session Setup Success Rate %
+         <input type="text" name="Session Setup Success Rate %" required="required" />
+        </p>
+       <p>Session Setup Success Rate_Nom
+         <input type="text" name="Session Setup Success Rate_Nom" required="required" />
+        </p>
+        <p>Handover_Success_Rate_New_Check_counter
+          <input type="text" name="Handover_Success_Rate_New_Check_counter" required="required" />
+        </p>
+        <p>RAN_Intra_eNB_Handover_Attempt
+         <input type="text" name="RAN_Intra_eNB_Handover_Attempt" required="required" />
+        </p>
+        <p>RAN_Inter_X2_Out_Handover_Success
+          <input type="text" name="RAN_Inter_X2_Out_Handover_Success" required="required" />
+        </p>
+        <p>VoLTE_Handover Success Rate
+         <input type="text" name="VoLTE_Handover Success Rate" required="required" />
+        </p>
+        <p>RSSI_Exception_Quarter Hour
+         <input type="text" name="RSSI_Exception_Quarter Hour" required="required" />
+        </p>
+        <p>RSSI_Exception_Quarter Hour_>-95dbm
+          <input type="text" name="RSSI_Exception_Quarter Hour_>-95dbm" required="required" />
+        </p>
+        <p>ATTACH_Fails
+          <input type="text" name="ATTACH_Fails" required="required" />
+        </p>
+        <p>% TA Samples > 2KM
+         <input type="text" name="% TA Samples > 2KM" required="required" />
+        </p>
+        <p>coveragehole+coverageholeN
+          <input type="text" name="coveragehole+coverageholeN" required="required" />
+        </p>
+        <p>[0x034C]Ecc_S1SctpOutOfService
+          <input type="text" name="[0x034C]Ecc_S1SctpOutOfService" required="required" />
+        </p>
+        <p>RAN_AVG_CQI_Nom_P1_BBH
+          <input type="text" name="RAN_AVG_CQI_Nom_P1_BBH" required="required" />
+        </p>
+        <p>RAN_AVG_CQI_P1_BBH
+         <input type="text" name="RAN_AVG_CQI_P1_BBH" required="required" />
+        </p>
+        <p>Radio Network Availability
+         <input type="text" name="Radio Network Availability" required="required" />
+        </p>
+       <p>IP THR_BBH
+         <input type="text" name="IP THR_BBH" required="required" />
+        </p>
+        <p>IP_thru_BBH_Nom
+         <input type="text" name="IP_thru_BBH_Nom" required="required" />
+        </p>
+        <p>IP_thru_BBH_Denom
+         <input type="text" name="IP_thru_BBH_Denom" required="required" />
+        </p>
+      <br><br>
+      <button type="submit"
+        class="btn btn-outline-primary btn-block btn-large d-grid gap-2 col-5 mx-auto">Predict</button>
     </form>
 
-   <br>
-   <br>
-  
-   
- </div>
- {{prediction_text}}
+    <br>
+    <br>
+
+
+  </div>
+  <div class="fw-semibold fs-5 link-success" align="center">
+    {{prediction_text}}
+  </div>
 
 </body>
+
 </html>
