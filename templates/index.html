@@ -3,18 +3,14 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta property="og:image" content="title.jpg">
   <title>Call Drop Predictor</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid bg-primary">
       <a class="navbar-brand text-white" href="#">Call Drop Prediction</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -32,114 +28,115 @@
   </nav>
   <style>
     .container {
-      width: 60%;
+        width: 60%;
     }
-  </style>
-  <div class="container">
+</style>
+<div class="container">
     <h3 align="center" class="text-bg-dark mt-5">Inputs</h3>
 
     <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}" method="post">
       <style>
         form {
-          overflow: hidden;
+            overflow: hidden;
         }
 
         input {
-          float: right;
-          clear: both;
+            float: right;
+            clear: both;
         }
-      </style>
-         <input type="text" name="ENB ID" required="required" />
+    </style>
+        <p>ENB ID
+          <input type="text" name="ENB ID" required="required" />
         </p>
         <p>cNum
-         <input type="text" name="cNum" required="required" />
+            <input type="text" name="cNum" required="required" />
         </p>
         <p>Band
-         <input type="text" name="Band" required="required" />
+            <input type="text" name="Band" required="required" />
         </p>
         <p>Sector
-          <input type="text" name="Sector" required="required" />
+            <input type="text" name="Sector" required="required" />
         </p>
         <p>Scope
-          <input type="text" name="Scope" required="required" />
+            <input type="text" name="Scope" required="required" />
         </p>
         <p>NE_STATE
-         <input type="text" name="NE_STATE" required="required" />
+            <input type="text" name="NE_STATE" required="required" />
         </p>
         <p>TotPrbDLAvg_BBH
-         <input type="text" name="TotPrbDLAvg_BBH" required="required" />
+            <input type="text" name="TotPrbDLAvg_BBH" required="required" />
         </p>
         <p>RAN_VoLTE_Drop_Rate_Nom_check_counter
-         <input type="text" name="RAN_VoLTE_Drop_Rate_Nom_check_counter" required="required" />
+            <input type="text" name="RAN_VoLTE_Drop_Rate_Nom_check_counter" required="required" />
         </p>
         <p>Session Setup Success Rate %
-         <input type="text" name="Session Setup Success Rate %" required="required" />
+            <input type="text" name="Session Setup Success Rate %" required="required" />
         </p>
-       <p>Session Setup Success Rate_Nom
-         <input type="text" name="Session Setup Success Rate_Nom" required="required" />
+        <p>Session Setup Success Rate_Nom
+            <input type="text" name="Session Setup Success Rate_Nom" required="required" />
         </p>
         <p>Handover_Success_Rate_New_Check_counter
-          <input type="text" name="Handover_Success_Rate_New_Check_counter" required="required" />
+            <input type="text" name="Handover_Success_Rate_New_Check_counter" required="required" />
         </p>
         <p>RAN_Intra_eNB_Handover_Attempt
-         <input type="text" name="RAN_Intra_eNB_Handover_Attempt" required="required" />
+            <input type="text" name="RAN_Intra_eNB_Handover_Attempt" required="required" />
         </p>
         <p>RAN_Inter_X2_Out_Handover_Success
-          <input type="text" name="RAN_Inter_X2_Out_Handover_Success" required="required" />
+            <input type="text" name="RAN_Inter_X2_Out_Handover_Success" required="required" />
         </p>
         <p>VoLTE_Handover Success Rate
-         <input type="text" name="VoLTE_Handover Success Rate" required="required" />
+            <input type="text" name="VoLTE_Handover Success Rate" required="required" />
         </p>
         <p>RSSI_Exception_Quarter Hour
-         <input type="text" name="RSSI_Exception_Quarter Hour" required="required" />
+            <input type="text" name="RSSI_Exception_Quarter Hour" required="required" />
         </p>
         <p>RSSI_Exception_Quarter Hour_>-95dbm
-          <input type="text" name="RSSI_Exception_Quarter Hour_>-95dbm" required="required" />
+            <input type="text" name="RSSI_Exception_Quarter Hour_>-95dbm" required="required" />
         </p>
         <p>ATTACH_Fails
-          <input type="text" name="ATTACH_Fails" required="required" />
+            <input type="text" name="ATTACH_Fails" required="required" />
         </p>
         <p>% TA Samples > 2KM
-         <input type="text" name="% TA Samples > 2KM" required="required" />
+            <input type="text" name="% TA Samples > 2KM" required="required" />
         </p>
         <p>coveragehole+coverageholeN
-          <input type="text" name="coveragehole+coverageholeN" required="required" />
+            <input type="text" name="coveragehole+coverageholeN" required="required" />
         </p>
         <p>[0x034C]Ecc_S1SctpOutOfService
-          <input type="text" name="[0x034C]Ecc_S1SctpOutOfService" required="required" />
+            <input type="text" name="[0x034C]Ecc_S1SctpOutOfService" required="required" />
         </p>
         <p>RAN_AVG_CQI_Nom_P1_BBH
-          <input type="text" name="RAN_AVG_CQI_Nom_P1_BBH" required="required" />
+            <input type="text" name="RAN_AVG_CQI_Nom_P1_BBH" required="required" />
         </p>
         <p>RAN_AVG_CQI_P1_BBH
-         <input type="text" name="RAN_AVG_CQI_P1_BBH" required="required" />
+            <input type="text" name="RAN_AVG_CQI_P1_BBH" required="required" />
         </p>
         <p>Radio Network Availability
-         <input type="text" name="Radio Network Availability" required="required" />
+            <input type="text" name="Radio Network Availability" required="required" />
         </p>
-       <p>IP THR_BBH
-         <input type="text" name="IP THR_BBH" required="required" />
+        <p>IP THR_BBH
+            <input type="text" name="IP THR_BBH" required="required" />
         </p>
         <p>IP_thru_BBH_Nom
-         <input type="text" name="IP_thru_BBH_Nom" required="required" />
+            <input type="text" name="IP_thru_BBH_Nom" required="required" />
         </p>
         <p>IP_thru_BBH_Denom
-         <input type="text" name="IP_thru_BBH_Denom" required="required" />
+            <input type="text" name="IP_thru_BBH_Denom" required="required" />
         </p>
-      <br><br>
-      <button type="submit"
-        class="btn btn-outline-primary btn-block btn-large d-grid gap-2 col-5 mx-auto">Predict</button>
+        <br><br>
+        <button type="submit"
+            class="btn btn-outline-primary btn-block btn-large d-grid gap-2 col-5 mx-auto">Predict</button>
     </form>
 
     <br>
     <br>
 
 
-  </div>
-  <div class="fw-semibold fs-5 link-success" align="center">
+</div>
+<div class="fw-semibold fs-5 link-success" align="center">
     {{prediction_text}}
-  </div>
+</div>
 
 </body>
 
